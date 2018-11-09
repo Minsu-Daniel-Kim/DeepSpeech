@@ -20,6 +20,7 @@ data="../keep"
 lang='cv'
 
 python3 -u DeepSpeech.py \
+  --n_hidden 2048 --checkpoint_dir "../keep/ckpt" --epoch -3 \
   --train_files "${data}/cv_${lang}_valid_train.csv"\
   --dev_files "${data}/cv_${lang}_valid_dev.csv" \
   --test_files "${data}/cv_${lang}_valid_test.csv" \

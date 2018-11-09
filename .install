@@ -8,3 +8,7 @@ pip install tensorflow-gpu==1.12.0rc2
 python3 util/taskcluster.py --arch gpu --target ../tmp/native_client
 
 mkdir -p ../keep/summaries
+
+mkdir ../keep/ckpt
+wget https://github.com/mozilla/DeepSpeech/releases/download/v0.3.0/deepspeech-0.3.0-checkpoint.tar.gz --directory-prefix="../keep/ckpt/"
+tar xvzf ../keep/ckpt/deepspeech-0.3.0-checkpoint.tar.gz
