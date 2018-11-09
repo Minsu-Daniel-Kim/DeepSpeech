@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "$0: BEGIN"
+
 source ../tmp/venv/bin/activate
 
 # this script splits into train/dev/test and saves to the arg dir
@@ -33,3 +35,6 @@ python3 -u DeepSpeech.py \
   --checkpoint_dir "../keep" \
   --summary_dir "../keep/summaries" \
   --decoder_library_path "../tmp/native_client/libctc_decoder_with_kenlm.so"
+
+
+echo "$0: END"
