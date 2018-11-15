@@ -5,7 +5,7 @@ echo "$0: BEGIN"
 source ../tmp/venv/bin/activate
 
 # this script splits into train/dev/test and saves to the arg dir
-for lang in 'cv'; 
+for lang in 'ky'; 
 do
     python ./filter_train_dev_test.py "${lang}" "../keep";
 done
