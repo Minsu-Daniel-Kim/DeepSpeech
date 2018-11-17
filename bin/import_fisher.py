@@ -142,7 +142,7 @@ def _split_wav_and_sentences(data_dir, trans_data, original_data, converted_data
 
             print("splitting {} according to {}".format(wav_files, trans_file))
 
-            origAudios = [librosa.load(wav_file, sr=None, mono=False) for wav_file in wav_files]
+            origAudios = [librosa.load(wav_file, sr=None, mono=False, dtype=np.float16) for wav_file in wav_files]
 
             # Loop over segments and split wav_file for each segment
             for segment in segments:
