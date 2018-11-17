@@ -18,6 +18,7 @@ import subprocess
 import unicodedata
 import librosa
 import resampy
+import numpy as np
 
 from util.text import validate_label
 
