@@ -16,4 +16,3 @@ tables
 attrdict
 setuptools
 librosa
-resampy

@@ -143,7 +143,7 @@ def _split_wav_and_sentences(data_dir, trans_data, original_data, converted_data
 
             print("splitting {} according to {}".format(wav_files, trans_file))
 
-            origAudios = [librosa.load(wav_file, sr=None, mono=False, dtype=np.float16) for wav_file in wav_files]
+            origAudios = [librosa.load(wav_file, sr=16000, mono=False, dtype=np.float16) for wav_file in wav_files]
 
             # Loop over segments and split wav_file for each segment
             for segment in segments:
@@ -154,7 +154,7 @@ def _split_wav_and_sentences(data_dir, trans_data, original_data, converted_data
                 new_wav_file = os.path.join(target_dir, new_wav_filename)
 
                 channel = 0 if segment["speaker"] == "A:" else 1
-                _split_and_resample_wav(origAudios[channel], start_time, stop_time, new_wav_file)
+                _split_wav(origAudios[channel], start_time, stop_time, new_wav_file)
 
                 new_wav_filesize = os.path.getsize(new_wav_file)
                 transcript = validate_label(segment["transcript"])
@@ -170,10 +170,8 @@ def _split_audio(origAudio, start_time, stop_time):
     stopIndex = int(stop_time * frameRate)
     return audioData[startIndex: stopIndex] if 1 == nChannels else audioData[:, startIndex: stopIndex]
 
-def _split_and_resample_wav(origAudio, start_time, stop_time, new_wav_file):
-    frameRate = origAudio[1]
+def _split_wav(origAudio, start_time, stop_time, new_wav_file):
     chunkData = _split_audio(origAudio, start_time, stop_time)
-    chunkData = resampy.resample(chunkData, frameRate, 16000)
     librosa.output.write_wav(new_wav_file, chunkData, 16000)
 
 def _split_sets(filelist):
